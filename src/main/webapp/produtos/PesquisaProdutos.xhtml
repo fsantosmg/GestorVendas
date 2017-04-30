@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
+<ui:composition template="/WEB-INF/templates/principalTemplate.xhtml">
+
+	<ui:define name="conteudo">
+		<b:container style="padding-top: 50px;">
+			<h2>Pesquisa de Produtos</h2>
+			<b:navBar brand="" brandHref="#" id="menuPagina">
+
+				<b:navbarLinks>
+					<p:button value="Pesquisar" outcome="/produtos/CadastroProduto"
+						icon="ui-icon-document" style="margin-top: 10px;" />
+
+				</b:navbarLinks>
+
+				<b:navbarLinks pull="right">
+
+					<p:button value="Novo" outcome="/produtos/CadastroProduto"
+						icon="ui-icon-document"
+						style="margin-top: 10px; margin-right: 30px;" />
+
+				</b:navbarLinks>
+
+			</b:navBar>
+
+			<div class="ui-fluid">
+				<p:panelGrid columns="2" id="painel" layout="grid"
+					style="width: 100%; margin-top: 20px"
+					columnClasses="ui-grid-col-2, ui-grid-col-10"
+					styleClass="ui-panelgrid-blank">
+
+					<p:outputLabel value="SKU" for="sku" />
+					<p:inputText id="sku" size="20" maxlength="20" style="width: 40%;" />
+
+					<p:outputLabel value="Nome" for="nome" />
+					<p:inputText id="nome" size="60" maxlength="80" style="width: 80%;" />
+
+				</p:panelGrid>
+
+				<p:dataTable id="produtosTable"
+					value="#{pesquisaProdutosBean.produtosFiltrados}" var="produto"
+					style="margin-top: 20px" emptyMessage="Nenhum produto encontrado."
+					reflow="true" rows="20" paginator="true"
+					paginatorAlwaysVisible="false" paginatorPosition="bottom">
+					<p:column headerText="SKU" style="text-align: center; width: 100px">
+						<h:outputText />
+					</p:column>
+					<p:column headerText="Nome">
+						<h:outputText  />
+					</p:column>
+					<p:column headerText="Categoria" style="width: 250px">
+						<h:outputText  />
+					</p:column>
+					<p:column headerText="Valor unitário"
+						style="text-align: right; width: 120px">
+						<h:outputText />
+					</p:column>
+					<p:column headerText="Estoque"
+						style="text-align: center; width: 100px">
+						<h:outputText  />
+					</p:column>
+					<p:column style="width: 100px; text-align: center">
+						<p:button icon="ui-icon-pencil" title="Editar"
+							outcome="/produtos/CadastroProduto">
+							<f:param name="produto" value="#" />
+						</p:button>
+						<p:commandButton icon="ui-icon-trash" title="Excluir"
+							oncomplete="PF('confirmaExclusao').show()" process="@this"
+							update=":frmPesquisaProduto:confirmaExclusao">
+
+							<f:setPropertyActionListener value="#{produto}"
+								target="#"></f:setPropertyActionListener>
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</div>
+		</b:container>
+	</ui:define>
+</ui:composition>
+</html>

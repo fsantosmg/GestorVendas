@@ -3,26 +3,25 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" 
-	xmlns:b="http://bootsfaces.net/ui">
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<h:outputStylesheet name="css/principal.css" />
 	<h:outputStylesheet library="primefaces" name="primefaces.css" />
-	<link rel="stylesheet"
-		href="/javax.faces.resource/charts/charts.css.jsf?ln=primefaces" />
 
-	<h:outputScript library="primefaces" name="charts/charts.js" />
+
+
 
 	<title>Facelets Template</title>
 </h:head>
 
 <h:body>
+
 	<div id="cabecalho" class="cabecalho">
 		<ui:insert name="topmenu">
 
-			<ui:include src="/templates/topMenu.xhtml" />
+			<ui:include src="/WEB-INF/templates/topMenu.xhtml" />
 
 		</ui:insert>
 	</div>
