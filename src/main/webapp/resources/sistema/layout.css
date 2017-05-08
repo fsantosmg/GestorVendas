@@ -1,0 +1,34 @@
+@CHARSET "ISO-8859-1";
+
+.col1-cadastro-produtos {
+	width: 100px;
+}
+
+.coluna1.ui-grid-col-4 {
+	width: 150px;
+}
+
+.coluna2 {
+	width: 400px;
+}
+
+.coluna3 {
+	width: 120px;
+}
+
+/* pesquisa pedidos */
+.rotulo {
+	width: 120px;
+}
+
+.calendarPedido input {
+	width: 100px !important;
+	
+/* cadastro pedidos */
+.colunaPedido {
+	width: 400px;
+}
+
+#cliente{
+	width: 450px;
+}

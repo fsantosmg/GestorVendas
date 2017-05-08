@@ -1,0 +1,77 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pv="http://primefaces.org/volt">
+
+	<h:form id="menuform">
+		<pv:menu>
+
+			<p:submenu id="rm_menupos" label="Menu Position" icon="icon-select">
+				<p:menuitem id="rm_left" url="#" value="Inline Menu"
+					icon="icon-uniE675"
+					onclick="$('body').removeClass('PopupMenu');return false;" />
+				<p:menuitem id="rm_popup" url="#" value="Popup Menu"
+					icon="icon-windows"
+					onclick="$('body').addClass('PopupMenu');return false;" />
+			</p:submenu>
+
+			<p:submenu id="prod_menu" label="Produtos" icon="icon-list">
+				<p:menuitem id="prod_cadastro" value="Cadastro"
+					icon="icon-code-outline" outcome="/produtos/CadastroProduto" />
+				<p:menuitem id="prod_pesquisa" value="Pesquisa"
+					icon="icon-radar-outline" outcome="/produtos/PesquisaProdutos" />
+
+				<p:menuitem id="rm_error" value="Error Page"
+					icon="icon-radar-outline" outcome="/error" />
+				<p:menuitem id="rm_404" value="404 Page" icon="icon-search"
+					outcome="/404" />
+				<p:menuitem id="rm_access" value="Access Denied Page"
+					icon="icon-eye-outline" outcome="/access-denied" />
+			</p:submenu>
+			<p:submenu id="ped_menu" label="Pedidos" icon="icon-list">
+				<p:menuitem id="ped_cadastro" value="Cadastro"
+					icon="icon-code-outline" outcome="/pedidos/CadastroPedidos" />
+				<p:menuitem id="ped_pesquisa" value="Pesquisa"
+					icon="icon-radar-outline" outcome="/pedidos/PesquisaPedidos" />
+
+			
+			</p:submenu>
+			<p:submenu id="rm_admin" label="Administração"
+				icon="icon-cog-outline">
+
+
+
+			</p:submenu>
+			<p:submenu id="rm_hierarchy" label="Menu Hierarchy"
+				icon="icon-flow-switch">
+				<p:submenu id="rm_sm1" label="Submenu 1" icon="icon-folder2">
+					<p:submenu id="rm_sm11" label="Submenu 1.1" icon="icon-folder2">
+						<p:submenu id="rm_sm111" label="Submenu 1.1.1" icon="icon-folder2">
+							<p:menuitem id="rm_lnk1111" value="Link 1"
+								icon="icon-link-outline" url="#" />
+							<p:menuitem id="rm_lnk1112" value="Link 2"
+								icon="icon-link-outline" url="#" />
+							<p:menuitem id="rm_lnk1113" value="Link 3"
+								icon="icon-link-outline" url="#" />
+						</p:submenu>
+					</p:submenu>
+				</p:submenu>
+				<p:submenu id="rm_sm2" label="Submenu 2" icon="icon-folder2">
+					<p:submenu id="rm_22" label="Submenu 2.2" icon="icon-folder2">
+						<p:submenu id="rm_221" label="Submenu 2.2.1" icon="icon-folder2">
+							<p:menuitem id="rm_lnk2211" value="Link 1"
+								icon="icon-link-outline" url="#" />
+							<p:menuitem id="rm_lnk2212" value="Link 2"
+								icon="icon-link-outline" url="#" />
+							<p:menuitem id="rm_lnk2213" value="Link 3"
+								icon="icon-link-outline" url="#" />
+						</p:submenu>
+					</p:submenu>
+				</p:submenu>
+			</p:submenu>
+		</pv:menu>
+	</h:form>
+
+</ui:composition>
