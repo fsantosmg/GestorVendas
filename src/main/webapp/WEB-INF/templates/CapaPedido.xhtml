@@ -5,18 +5,17 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<div class="ui-fluid">
+	
 
 		<p:panelGrid columns="4" style="width: 100%; margin-top: 20px"
-			layout="grid" columnClasses="coluna3, colunaPedido, coluna3, colunaPedido">
-			<p:outputLabel value="Número"
-				rendered="#{cadastroPedidoBean.editando}" />
-			<h:outputText value="#{cadastroPedidoBean.pedido.id}"
-				rendered="#{cadastroPedidoBean.editando}" />
+			layout="grid"
+			columnClasses="coluna3, colunaPedido, coluna3, colunaPedido">
+			<p:outputLabel value="Número" />
 
-			<p:outputLabel value="Data de criação"
-				rendered="#{cadastroPedidoBean.editando}" />
-			<h:outputText value="#{cadastroPedidoBean.pedido.dataCriacao}"
-				rendered="#{cadastroPedidoBean.editando}">
+			<h:outputText value="#{cadastroPedidoBean.pedido.id}" />
+
+			<p:outputLabel value="Data de criação" />
+			<h:outputText value="#{cadastroPedidoBean.pedido.dataCriacao}">
 				<f:convertDateTime pattern="dd/MM/yyyy" />
 			</h:outputText>
 
@@ -28,13 +27,12 @@
 				value="#{cadastroPedidoBean.pedido.vendedor}">
 				<f:selectItem itemLabel="selecione" />
 				<f:selectItems itemLabel="#{vendedor.nome}" itemValue="#{vendedor}"
-					value="#{cadastroPedidoBean.vendedor}" var="vendedor" />
+					var="vendedor" />
 			</p:selectOneMenu>
 
 			<p:outputLabel value="Cliente" for="cliente" />
 			<p:autoComplete id="cliente" size="40" dropdown="true"
-				value="#{cadastroPedidoBean.pedido.cliente}"
-				completeMethod="#{cadastroPedidoBean.listarCliente}" var="cliente"
+				value="#{cadastroPedidoBean.pedido.cliente}" var="cliente"
 				itemLabel="#{cliente.nome}" itemValue="#{cliente}"
 				forceSelection="true" />
 
@@ -42,8 +40,8 @@
 			<p:selectOneMenu id="formaPagamento"
 				value="#{cadastroPedidoBean.pedido.formaPagamento}">
 				<f:selectItem itemLabel="Selecione" />
-				<f:selectItems value="#{cadastroPedidoBean.formaPagamentos}"
-					var="formaPagamentos" itemLabel="#{formaPagamentos.descricao}"
+				<f:selectItems var="formaPagamentos"
+					itemLabel="#{formaPagamentos.descricao}"
 					itemValue="#{formaPagamentos}" />
 			</p:selectOneMenu>
 
@@ -51,12 +49,11 @@
 			<p:inputText id="valorFrete" size="10" maxlength="10"
 				styleClass="moeda" value="#{cadastroPedidoBean.pedido.valorFrete}">
 				<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
-				<p:ajax event="change" process="@this" update="totalPedido"
-					listener="#{cadastroPedidoBean.recalcularPedido}" />
+				<p:ajax event="change" process="@this" update="totalPedido" />
 			</p:inputText>
 
 			<p:outputLabel value="Subtotal" style="font-weight: bold" />
-			<h:outputText value="#{cadastroPedidoBean.pedido.valorSubtotal}"
+			<h:outputText value="#{cadastroPedidoBean.pedido.valorTotal}"
 				style="font-weight: bold" id="subtotalPedido">
 				<f:convertNumber type="currency" />
 			</h:outputText>
@@ -67,7 +64,7 @@
 				value="#{cadastroPedidoBean.pedido.valorDesconto}">
 				<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
 				<p:ajax event="change" process="@this" update="totalPedido"
-					listener="#{cadastroPedidoBean.recalcularPedido}" />
+					/>
 			</p:inputText>
 
 			<p:outputLabel value="Total do pedido"
@@ -77,5 +74,6 @@
 				<f:convertNumber type="currency" />
 			</h:outputText>
 		</p:panelGrid>
+
 	</div>
 </ui:composition>

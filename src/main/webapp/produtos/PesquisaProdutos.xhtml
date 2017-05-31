@@ -10,7 +10,8 @@
     </ui:define>
 
 	<ui:define name="content">
-		<h:form>
+		<p:messages autoUpdate="true" closable="true" />
+		<h:form id="frmPesquisaProduto">
 			<h:outputStylesheet library="sistema" name="layout.css" />
 			<div class="Container100">
 				<div class="Card TexAlLeft">
@@ -25,16 +26,20 @@
 							<p:column>
 								<p:outputLabel value="SKU" for="sku" />
 								<p:inputText id="sku" size="20" maxlength="20"
-									style="width: 50px;" />
+									style="width: 95%;" value="#{pesquisaProdutosBean.filtro.sku}" />
+
 							</p:column>
 							<p:column>
 								<p:outputLabel value="Nome" for="nome" />
 								<p:inputText id="nome" size="60" maxlength="80"
-									style="width: 100%;" />
+									style="width: 100%;"
+									value="#{pesquisaProdutosBean.filtro.nome}" />
 							</p:column>
 							<p:column>
 								<p:commandButton title="salvar" icon="fa fa-search Fs14 White"
-									id="salvar" style="margin-top: 19px;" />
+									id="pesquisar" style="margin-top: 19px;"
+									actionListener="#{pesquisaProdutosBean.pesquisar}"
+									update="@form" />
 							</p:column>
 						</p:panelGrid>
 
@@ -46,43 +51,53 @@
 							paginatorPosition="bottom">
 							<p:column headerText="SKU"
 								style="text-align: center; width: 100px">
-								<h:outputText />
+								<h:outputText value="#{produto.sku}" />
 							</p:column>
 							<p:column headerText="Nome">
-								<h:outputText />
+								<h:outputLabel value="#{produto.nome}" />
+
 							</p:column>
 							<p:column headerText="Categoria" style="width: 250px">
-								<h:outputText />
+								<h:outputLabel
+									value="#{produto.categoria.categoriaPai.descricao} - #{produto.categoria.descricao}" />
+
 							</p:column>
 							<p:column headerText="Valor unitário"
 								style="text-align: right; width: 120px">
-								<h:outputText />
+								<h:outputText value="#{produto.valorUnitario}">
+									<f:convertNumber type="currency" />
+								</h:outputText>
 							</p:column>
 							<p:column headerText="Estoque"
 								style="text-align: center; width: 100px">
-								<h:outputText />
+								<h:outputLabel value="#{produto.quantidadeEstoque}" />
+
 							</p:column>
 							<p:column style="width: 100px; text-align: center">
-								<p:button icon="ui-icon-pencil" title="Editar"
+								<p:button icon="ui-icon-pencil" title="Editar" id="editar"
 									outcome="/produtos/CadastroProduto">
-									<f:param name="produto" value="#" />
+									<f:param name="produto" value="#{produto.id}" />
 								</p:button>
 								<p:commandButton icon="ui-icon-trash" title="Excluir"
 									oncomplete="PF('confirmaExclusao').show()" process="@this"
 									update=":frmPesquisaProduto:confirmaExclusao">
 
-									<f:setPropertyActionListener value="#{produto}" target="#"></f:setPropertyActionListener>
+									<f:setPropertyActionListener value="#{produto}"
+										target="#{pesquisaProdutosBean.produtoSelecionado}"></f:setPropertyActionListener>
 								</p:commandButton>
 							</p:column>
 						</p:dataTable>
 
 						<p:confirmDialog header="Exclusão de produto"
-							message="Tem certeza que deseja excluir o produto?"
-							widgetVar="confirmacaoExclusao">
+							id="confirmaExclusao"
+							message="Tem certeza que deseja excluir o produto #{pesquisaProdutosBean.produtoSelecionado.sku}?"
+							widgetVar="confirmaExclusao">
 							<p:button value="Não"
-								onclick="confirmacaoExclusao.hide(); return false;" />
+								onclick="PF('confirmaExclusao').hide(); return false;" />
 							<p:commandButton value="Sim"
-								oncomplete="confirmacaoExclusao.hide();" />
+								action="#{pesquisaProdutosBean.excluir}"
+								onclick="PF('confirmaExclusao').hide();" process="@this"
+								update=":frmPesquisaProduto:produtosTable" />
 						</p:confirmDialog>
 
 					</div>

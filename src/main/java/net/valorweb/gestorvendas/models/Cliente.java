@@ -1,25 +1,40 @@
-package net.valorweb.model;
+package net.valorweb.gestorvendas.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.beans.factory.annotation.Value;
 
 @Entity
 public class Cliente implements Serializable {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@Column(nullable = false, length = 100)
 	private String nome;
 	private String email;
+	
+	@Column(nullable=false, length=14)
 	private String documentoReceitaFederal;
 	private TipoPessoa tipo;
 
+	// cascade all, automaticamente perciste os endereços para o cliente
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
 
 	public Long getId() {

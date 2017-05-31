@@ -14,4 +14,13 @@
 			<renderer-class>org.primefaces.volt.component.menu.VoltMenuRenderer</renderer-class>
 		</renderer>
 	</render-kit>
+
+	<factory>
+		<exception-handler-factory>
+			net.valorweb.util.jsf.JsfExceptionHandlerFactory</exception-handler-factory>
+	</factory>
+
+	<application>
+		<message-bundle>net.valorweb.gestorvendas.Messages</message-bundle>
+	</application>
 </faces-config>

@@ -10,50 +10,53 @@
     </ui:define>
 
 	<ui:define name="content">
+		<h:form>
 
-		<h:outputStylesheet library="sistema" name="layout.css" />
-		<div class="Container100">
-			<div class="Card TexAlLeft">
-				<div class="CardTopic Blue">Novo Pedido</div>
-				<p:toolbarGroup>
-					<p:commandButton title="salvar" icon="fa fa-save Fs14 White"
-						id="salvar" style="margin-top: 19px;" />
-					<p:button value="Novo" outcome="/pedidos/CadastroPedidos"
-						icon="ui-icon-document" style="margin-top: 10px;" />
-
-
-					<p:button value="Emitir" outcome="/pedidos/CadastroPedidos"
-						icon="ui-icon-document" style="margin-top: 10px;" />
-					<p:button value="Cancelar" outcome="/pedidos/CadastroPedidos"
-						icon="ui-icon-document" style="margin-top: 10px;" />
-					<p:button value="Enviar por email"
-						outcome="/pedidos/CadastroPedidos" icon="ui-icon-document"
-						style="margin-top: 10px;" />
+			<h:outputStylesheet library="sistema" name="layout.css" />
+			<p:messages autoUpdate="true" />
+			<div class="Container100">
+				<div class="Card TexAlLeft">
+					<div class="CardTopic Blue">Novo Pedido</div>
+					<p:toolbarGroup>
+						<p:commandButton title="salvar" icon="fa fa-save Fs14 White"
+							id="salvar" style="margin-top: 19px;"
+							action="#{cadastroPedidoBean.salvar}" />
+						<p:button value="Novo" outcome="/pedidos/CadastroPedidos"
+							icon="ui-icon-document" style="margin-top: 10px;" />
 
 
-				</p:toolbarGroup>
-
-				<div class="Separator"></div>
-				<ui:include src="/WEB-INF/templates/CapaPedido.xhtml" />
-
-				<p:tabView style="margin-top:20px;">
-					<p:tab title="Itens">
-						<ui:include src="/WEB-INF/templates/ItensPedido.xhtml" />
-					</p:tab>
-					<p:tab title="Dados de Entrega">
-						<ui:include src="/WEB-INF/templates/DadosEntregaPedido.xhtml" />
-					</p:tab>
-					<p:tab title="Observações">
-					<ui:include src="/WEB-INF/templates/ObservacaoPedido.xhtml" />
-					</p:tab>
-				</p:tabView>
+						<p:button value="Emitir" outcome="/pedidos/CadastroPedidos"
+							icon="ui-icon-document" style="margin-top: 10px;" />
+						<p:button value="Cancelar" outcome="/pedidos/CadastroPedidos"
+							icon="ui-icon-document" style="margin-top: 10px;" />
+						<p:button value="Enviar por email"
+							outcome="/pedidos/CadastroPedidos" icon="ui-icon-document"
+							style="margin-top: 10px;" />
 
 
+					</p:toolbarGroup>
 
-				<br /> <br />
+					<div class="Separator"></div>
+					<ui:include src="/WEB-INF/templates/CapaPedido.xhtml" />
+
+					<p:tabView style="margin-top:20px;">
+						<p:tab title="Itens">
+							<ui:include src="/WEB-INF/templates/ItensPedido.xhtml" />
+						</p:tab>
+						<p:tab title="Dados de Entrega">
+							<ui:include src="/WEB-INF/templates/DadosEntregaPedido.xhtml" />
+						</p:tab>
+						<p:tab title="Observações">
+							<ui:include src="/WEB-INF/templates/ObservacaoPedido.xhtml" />
+						</p:tab>
+					</p:tabView>
+
+
+
+					<br /> <br />
+				</div>
 			</div>
-		</div>
-
+			</h:form>
 	</ui:define>
 
 </ui:composition>
